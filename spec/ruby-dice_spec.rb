@@ -52,11 +52,19 @@ describe RubyDice::Passphrase do
     expect(passphrase).to eql(camel)
   end
 
-  it 'returns a passphrase with a number' do
+  it 'returns a passphrase with a number at some point in the string' do
+    words = %w[mary had a little lamb]
+    with_number = /\d+/
+    allow_any_instance_of(RubyDice::Wordlist).to receive(:random).and_return(words)
+    passphrase = RubyDice::Passphrase.generate(numbers: true)
+    expect(passphrase).to match(with_number)
+  end
+
+  it 'returns a passphrase with a number at the end if randomize_numbers is false' do
     words = %w[mary had a little lamb]
     with_number = /Mary-Had-A-Little-Lamb\d+/
     allow_any_instance_of(RubyDice::Wordlist).to receive(:random).and_return(words)
-    passphrase = RubyDice::Passphrase.generate(numbers: true)
+    passphrase = RubyDice::Passphrase.generate(numbers: true, randomize_numbers: false)
     expect(passphrase).to match(with_number)
   end
 end
