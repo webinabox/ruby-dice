@@ -1,7 +1,7 @@
 module RubyDice
   class Passphrase
     def self.generate(options = {})
-      default_options = { words: 5 }
+      default_options = { words: 5, separator: '-', camelcase: false, capitalize: true, numbers: true }
       options = default_options.merge(options)
 
       wordlist_options = {}
@@ -14,15 +14,14 @@ module RubyDice
         words[-1] += SecureRandom.random_number(100).to_s
       end
 
-      if options[:camelcase]
+      if options[:capitalize] || options[:camelcase]
         words.map!(&:capitalize)
-        words[0] = words[0].downcase
-        phrase = words.join
-      else
-        phrase = words.join(' ')
+        words[0] = words[0].downcase if options[:camelcase]
       end
 
-      phrase
-    end
+      phrase = words.join(options[:separator])
+
+    phrase
   end
+end
 end

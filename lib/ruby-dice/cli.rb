@@ -4,11 +4,13 @@ require 'ruby-dice'
 module RubyDice
   class CLI < Thor
     desc 'throw', 'Generate and copy a passphrase'
-    option :length,    type: :numeric, default: 5,     aliases: :l, desc: 'Amount of words to use'
-    option :print,     type: :boolean, default: false, aliases: :p, desc: 'Output passphrase to terminal'
-    option :wordlist,  type: :string,  default: nil,   aliases: :w, desc: 'Use a custom wordlist file', banner: 'filename'
-    option :camelcase, type: :boolean, default: false, aliases: :c, desc: 'Generate a camelCase passphrase with no spaces'
-    option :numbers,   type: :boolean, default: false, aliases: :n, desc: 'Generate a passphrase with at least one number'
+    option :length,     type: :numeric, default: 5,     aliases: :l, desc: 'Amount of words to use'
+    option :print,      type: :boolean, default: false, aliases: :p, desc: 'Output passphrase to terminal'
+    option :wordlist,   type: :string,  default: nil,   aliases: :w, desc: 'Use a custom wordlist file', banner: 'filename'
+    option :camelcase,  type: :boolean, default: false, aliases: :c, desc: 'convert passphrase to convert words into camelCase'
+    option :capitalize, type: :boolean, default: false, aliases: :c, desc: 'convert words to capitalized'
+    option :separator,  type: :string,  default: ' ',   aliases: :s, desc: 'Separator to use between words', banner: 'separator'
+    option :numbers,    type: :boolean, default: false, aliases: :n, desc: 'Generate a passphrase with at least one number'
     def throw
       passphrase_options = {}.tap do |o|
         o[:words] = options['length']
