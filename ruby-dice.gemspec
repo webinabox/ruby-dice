@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'ruby-dice/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'ruby-diceware'
+  spec.name          = 'ruby-dice'
   spec.version       = RubyDice::VERSION
   spec.authors       = ['Ivan Vega', 'Shane Short']
   spec.email         = ['shanes@webinabox.net.au']
