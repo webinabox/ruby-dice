@@ -6,10 +6,10 @@ require 'ruby-dice/version'
 Gem::Specification.new do |spec|
   spec.name          = 'ruby-diceware'
   spec.version       = RubyDice::VERSION
-  spec.authors       = ['Ivan Vega']
-  spec.email         = ['']
+  spec.authors       = ['Ivan Vega', 'Shane Short']
+  spec.email         = ['shanes@webinabox.net.au']
   spec.summary       = %q{Ruby Diceware passphrase generator}
-  spec.description   = %q{Simple Ruby script to generate "Diceware" passphrases.}
+  spec.description   = %q{Simple Ruby library to generate "Diceware" passphrases.}
   spec.homepage      = 'https://github.com/ivanyv/ruby-dice'
   spec.license       = 'MIT'
 
@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'thor'
 
-  spec.add_development_dependency 'bundler', '~> 1.3'
+  spec.add_development_dependency 'bundler', '~> 2.2'
   spec.add_development_dependency 'rake'
-  spec.add_development_dependency 'rspec',   '~> 2.6'
+  spec.add_development_dependency 'rspec',   '~> 3.1'
 end
