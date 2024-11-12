@@ -17,7 +17,8 @@ module RubyDice
 
       search_paths = [
         File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'assets')),
-        File.join(Dir.home, '.wordlists')
+        File.join(Dir.home, '.wordlists'),
+        '.'
       ]
 
       # Too convoluted?
