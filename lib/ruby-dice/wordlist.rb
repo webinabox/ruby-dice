@@ -7,15 +7,18 @@ module RubyDice
     # Damn ugly... lets refactor sometime
     def initialize(options = {})
       default_options = { filename: 'eff_large_wordlist.txt' }
+
+      # Allow for a string to be passed in as the filename for backwards compatibility.
+      options = { filename: options } if options.is_a?(String)
       options = default_options.merge(options)
 
       filename = options[:filename]
       filename += '.txt' if File.extname(filename) == ''
 
       search_paths = [
-                       File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'assets')),
-                       File.join(Dir.home, '.wordlists')
-                     ]
+        File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'assets')),
+        File.join(Dir.home, '.wordlists')
+      ]
 
       # Too convoluted?
       unless (full_path = (File.exist?(filename) ? filename : nil))
