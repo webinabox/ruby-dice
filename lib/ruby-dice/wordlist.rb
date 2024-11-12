@@ -5,18 +5,11 @@ module RubyDice
     attr_reader :words
 
     # Damn ugly... lets refactor sometime
-    def initialize(filename_or_options = nil)
-      options = {}
-      filename = nil
+    def initialize(options = {})
+      default_options = { filename: 'eff_large_wordlist.txt' }
+      options = default_options.merge(options)
 
-      if filename_or_options.is_a?(Hash)
-        options = filename_or_options
-        filename = options[:wordlist]
-      else
-        filename = filename_or_options
-      end
-
-      filename ||= 'diceware.wordlist.asc'
+      filename = options[:filename]
       filename += '.txt' if File.extname(filename) == ''
 
       search_paths = [
@@ -25,8 +18,8 @@ module RubyDice
                      ]
 
       # Too convoluted?
-      unless full_path = (File.exists?(filename) ? filename : nil)
-        path = search_paths.detect { |path| File.exists? File.join(path, filename) }
+      unless (full_path = (File.exist?(filename) ? filename : nil))
+        path = search_paths.detect { |path| File.exist? File.join(path, filename) }
         full_path = File.join(path, filename)
       end
 
