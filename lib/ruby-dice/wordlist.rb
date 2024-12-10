@@ -24,6 +24,7 @@ module RubyDice
       # Too convoluted?
       unless (full_path = (File.exist?(filename) ? filename : nil))
         path = search_paths.detect { |path| File.exist? File.join(path, filename) }
+        raise "Could not find #{filename} in any of the search paths" unless path
         full_path = File.join(path, filename)
       end
 
